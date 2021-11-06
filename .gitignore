@@ -17,7 +17,6 @@ node_modules/
 
 # Distribution / packaging
 .Python
-userData/
 .idea/
 build/
 develop-eggs/

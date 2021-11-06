@@ -1,0 +1,5 @@
+.mypy_cache
+.coverage
+htmlcov
+/alembic/versions/
+/app/.idea/
