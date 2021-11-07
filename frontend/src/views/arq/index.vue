@@ -2,12 +2,12 @@
   <div class="app-container">
     <el-row :gutter="10" class="panel-group">
       <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
-        <div class="card-panel" @click="handleTask()">
+        <div class="card-panel">
           <div class="card-panel-icon-wrapper icon-people">
             <svg-icon icon-class="guide" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
-            <div class="card-panel-text">工作者</div>
+            <div class="card-panel-text">工人数</div>
             <count-to
               :start-val="0"
               :end-val="this.num.workers_num"
@@ -23,7 +23,7 @@
             <svg-icon icon-class="bug" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
-            <div class="card-panel-text">任务</div>
+            <div class="card-panel-text">任务数</div>
             <count-to
               :start-val="0"
               :end-val="this.num.functions_num"
@@ -34,7 +34,7 @@
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
-        <div class="card-panel" @click="handleTask()">
+        <div class="card-panel" @click="handleResult()">
           <div class="card-panel-icon-wrapper icon-money">
             <svg-icon icon-class="time" class-name="card-panel-icon" />
           </div>
@@ -60,27 +60,27 @@
       highlight-current-row
       style="width: 100%"
     >
-      <el-table-column align="center" label="队列" min-width="150px">
+      <el-table-column align="center" label="队列" min-width="310px">
         <template slot-scope="{ row }">
           <el-tag type="" size="mini">{{ row.queue_name }}</el-tag>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="250px" align="center" label="工作者">
+      <el-table-column min-width="310px" align="center" label="工人">
         <template slot-scope="{ row }">
-          <div v-for="item in row.workers">
-            <el-tag type="success" size="mini">{{ item }}</el-tag>
-          </div>
+  
+            <el-tag type="success" size="mini">{{ row.worker_name }}</el-tag>
+    
         </template>
       </el-table-column>
 
       <el-table-column min-width="80px" align="center" label="状态">
         <template slot-scope="{ row }">
-          <el-tag type="success" size="mini">运行中</el-tag>
+          <el-tag v-if="row.is_action" type="success" size="mini">运行中</el-tag>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="120px" align="center" label="队列任务数">
+      <el-table-column min-width="120px" align="center" label="队列任务">
         <template slot-scope="{ row }">
           <span>{{ row.queued }}</span>
         </template>
@@ -188,8 +188,8 @@ export default {
       // self.$router.push(`/arq/worker`);
     },
     handleResult() {
-      // const self = this;
-      // self.$router.push(`/arq/result`);
+      const self = this;
+      self.$router.push(`/arq/job`);
     },
   },
 };

@@ -47,7 +47,7 @@ uvicorn==0.14.0
 fastapi_profiler
 motor
 pydantic[email]
-arq
+arq-dev==0.23
 rearq==0.2.4
 tomlkit
 arrow

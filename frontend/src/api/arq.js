@@ -21,7 +21,7 @@ export function get_all_workers(query) {
 //  get_task_list
 export function get_task_list(query) {
   return request({
-    url: `/arq/get_task_list`,
+    url: `/arq/get_all_task`,
     method: 'GET',
     params: query
   })

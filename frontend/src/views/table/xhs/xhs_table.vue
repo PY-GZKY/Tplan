@@ -80,7 +80,6 @@
 
       <el-table
         :key="tableKey"
-        v-loading="listLoading"
         :data="list"
         border
         fit
@@ -342,12 +341,10 @@ export default {
     },
     getList() {
       this.listLoading = true;
-      console.log("listQuery: ", this.listQuery);
       get_xhs_list(this.listQuery).then((response) => {
         console.log("response: ", response);
         this.list = response.data.items;
         this.total = response.data.total;
-
         // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false;

@@ -6,8 +6,7 @@ import os
 import sys
 import time
 
-from arq import create_pool
-from arq.connections import RedisSettings
+from app.arq.connections import RedisSettings, create_pool
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
 from fastapi_profiler.profiler_middleware import PyInstrumentProfilerMiddleware
@@ -19,7 +18,6 @@ from app.db.mongo_db import db
 from app.db.redis_db import RedisCore
 from app.logger import logger
 from app.middleware.access_middle import AccessMiddleware
-# from app.rearq_.start import rearq
 from app.supervisor_.core import Cesi
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))

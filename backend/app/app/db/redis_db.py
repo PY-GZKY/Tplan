@@ -77,6 +77,6 @@ class RedisCore():
 
 
 from typing import Optional
-from arq.connections import ArqRedis
+from app.arq.connections import ArqRedis
 
 arq_redis_pool: Optional[ArqRedis] = None
