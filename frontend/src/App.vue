@@ -4,14 +4,6 @@
   </div>
 </template>
 
-// 你知道、有时候pingfang字体会让人感到舒服
-<style>
-@import "./assets/font/font.css";
-body {
-    font-family: PingFang;
-}
-</style>
-
 <script>
 export default {
   name: "App",
@@ -62,3 +54,13 @@ export default {
   },
 };
 </script>
+
+
+
+
+<style>
+@import "./assets/custom-theme/font.css";
+* {
+  font-family: PingFang;
+}
+</style>

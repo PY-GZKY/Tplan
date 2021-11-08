@@ -22,7 +22,6 @@
             :key="tableKey"
             v-loading="listLoading"
             :data="nodeList"
-            aria-setsize
             fit
             highlight-current-row
             @row-click="nodeProcessList"

@@ -1,6 +1,6 @@
 @font-face {  
     font-family: 'PingFang'; 
-    src: url('PingFang Bold.ttf'); 
-    font-weight: bold;  
+    src: url('fonts/PingFangBold.ttf'); 
+    font-weight: normal;  
     font-style: normal;  
   }

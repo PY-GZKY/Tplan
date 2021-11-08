@@ -22,18 +22,17 @@ import ElImageViewer from "element-ui/packages/image/src/image-viewer";
 
 Vue.use(ElImageViewer)
 
+import './icons' // icon
+import './permission' // permission control
+import './utils/error-log' // error log
+import { getDicts } from '@/api/system/dict/data'
+import { resetForm, selectDictLabel, download, handleTree } from '@/utils/ruoyi'
+import Pagination from '@/components/Pagination'
+import * as filters from './filters' // global filters
 
 import App from './App'
 import store from './store'
 import router from './router'
-
-import './icons' // icon
-import './permission' // permission control
-import './utils/error-log' // error log
-import {getDicts} from '@/api/system/dict/data'
-import {resetForm, selectDictLabel, download, handleTree} from '@/utils/ruoyi'
-import Pagination from '@/components/Pagination'
-import * as filters from './filters' // global filters
 
 
 // 全局方法挂载
@@ -48,11 +47,11 @@ Vue.prototype.download = download
 Vue.prototype.handleTree = handleTree
 
 Vue.prototype.msgSuccess = function (msg) {
-  this.$message({showClose: true, message: msg, type: 'success'})
+  this.$message({ showClose: true, message: msg, type: 'success' })
 }
 
 Vue.prototype.msgError = function (msg) {
-  this.$message({showClose: true, message: msg, type: 'error'})
+  this.$message({ showClose: true, message: msg, type: 'error' })
 }
 
 Vue.prototype.msgInfo = function (msg) {

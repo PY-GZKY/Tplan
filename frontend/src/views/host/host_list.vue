@@ -410,9 +410,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true;
-      console.log("listQuery: ", this.listQuery);
       host_list(this.listQuery).then((response) => {
-        console.log("response: ", response);
         this.list = response.data.items;
         this.total = response.data.total;
         setTimeout(() => {

@@ -65,7 +65,6 @@
             <el-form-item>
               <el-button
                 v-waves
-                :loading="downloadLoading"
                 size="mini"
                 type="success"
                 icon="el-icon-plus"
@@ -81,30 +80,32 @@
       <el-table
         :key="tableKey"
         :data="list"
+        v-loading="listLoading"
+        aria-setsize
         border
         fit
         highlight-current-row
         style="width: 100%"
       >
-        <el-table-column align="center" label="笔记ID" width="220">
+        <el-table-column align="center" label="笔记ID" min-width="220">
           <template slot-scope="{ row }">
             <span>{{ row.note_id }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column width="280px" align="center" label="标题">
+        <el-table-column min-width="280px" align="center" label="标题">
           <template slot-scope="{ row }">
             <span>{{ row.title }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column width="100px" align="center" label="点赞数">
+        <el-table-column min-width="100px" align="center" label="点赞数">
           <template slot-scope="{ row }">
             <span>{{ row.collects }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column width="150px" align="center" label="用户昵称">
+        <el-table-column min-width="150px" align="center" label="用户昵称">
           <template slot-scope="{ row }">
             <span>{{ row.username }}</span>
           </template>
@@ -113,7 +114,7 @@
         <el-table-column align="center" min-width="90px" label="评论数">
           <template slot-scope="{ row }">
             <template v-if="row.edit">
-              <el-input v-model="row.title" class="edit-input" size="small"/>
+              <el-input v-model="row.title" size="small" />
             </template>
             <span v-else>{{ row.comments }}</span>
           </template>
@@ -142,7 +143,7 @@
           </template>
         </el-table-column>
 
-        <el-table-column label="操作" align="center" fixed="right" width="260">
+        <el-table-column label="操作" align="center" fixed="right" min-width="260">
           <template slot-scope="{ row, $index }">
             <el-button
               v-if="row.image_list.length != 0"
@@ -197,17 +198,17 @@
           style="width: 600px; margin-left: 35px"
         >
           <el-form-item label="标题" prop="title">
-            <el-input v-model="temp.title"/>
+            <el-input v-model="temp.title" />
           </el-form-item>
 
           <el-form-item label="用户昵称" prop="username">
-            <el-input v-model="temp.username"/>
+            <el-input v-model="temp.username" />
           </el-form-item>
           <el-form-item label="点赞数" prop="collects">
-            <el-input v-model="temp.collects"/>
+            <el-input v-model="temp.collects" />
           </el-form-item>
           <el-form-item label="评论数" prop="comments">
-            <el-input v-model="temp.comments"/>
+            <el-input v-model="temp.comments" />
           </el-form-item>
           <el-form-item label="笔记内容" prop="content">
             <el-input
@@ -241,22 +242,19 @@
 </template>
 
 <script>
-import {
-  get_xhs_list,
-} from "@/api/xhs";
+import { get_xhs_list } from "@/api/xhs";
 import waves from "@/directive/waves"; // waves directive
-import {parseTime} from "@/utils";
+import { parseTime } from "@/utils";
 import Pagination from "@/components/Pagination"; // secondary package based on el-pagination
 
 export default {
-  name: "ComplexTable",
-  components: {Pagination},
-  directives: {waves},
-  inject: ["reload"],
+  name: "Xhs",
+  components: { Pagination },
+  directives: { waves },
 
   data() {
     return {
-      tableKey: 0,
+      tableKey: Math.random(),
       list: null,
       total: 0,
       listLoading: true,
@@ -282,7 +280,7 @@ export default {
       pvData: [],
       rules: {
         city: [
-          {required: true, message: "city is required", trigger: "change"},
+          { required: true, message: "city is required", trigger: "change" },
         ],
 
         title: [
@@ -293,7 +291,7 @@ export default {
           },
         ],
         content: [
-          {required: true, message: "content is required", trigger: "change"},
+          { required: true, message: "content is required", trigger: "change" },
         ],
 
         collects: [
@@ -331,6 +329,7 @@ export default {
   created() {
     this.getList();
   },
+
   methods: {
     // 关闭图片预览
     onClose() {
@@ -342,15 +341,13 @@ export default {
     getList() {
       this.listLoading = true;
       get_xhs_list(this.listQuery).then((response) => {
-        console.log("response: ", response);
         this.list = response.data.items;
         this.total = response.data.total;
-        // Just to simulate the time of the request
-        setTimeout(() => {
-          this.listLoading = false;
-        }, 1.5 * 1000);
+        this.listLoading = false;
+        setTimeout(() => {}, 1.5 * 1000);
       });
     },
+
     handleFilter() {
       this.listQuery.page = 1;
       this.getList();
@@ -423,6 +420,7 @@ export default {
         }
       });
     },
+
     handleDelete(row, index) {
       this.$notify({
         title: "不不不",
@@ -462,7 +460,7 @@ export default {
         excel.export_json_to_excel({
           header: tHeader,
           data,
-          filename: "xhs" + date.toLocaleString("chinese", {hour12: false}),
+          filename: "xhs" + date.toLocaleString("chinese", { hour12: false }),
         });
         this.downloadLoading = false;
       });
