@@ -1,4 +1,7 @@
 import Vue from 'vue'
+import App from './App'
+import store from './store'
+import router from './router'
 
 import Cookies from 'js-cookie'
 
@@ -11,7 +14,6 @@ import './styles/element-variables.scss'
 import '@/styles/index.scss' // global css
 import '@/styles/ruoyi.scss' // ruoyi css
 
-// import audio from 'vue-mobile-audio'
 // 全局引入
 import AudioPlayer from '@liripeng/vue-audio-player'
 import '@liripeng/vue-audio-player/lib/vue-audio-player.css'
@@ -29,10 +31,6 @@ import { getDicts } from '@/api/system/dict/data'
 import { resetForm, selectDictLabel, download, handleTree } from '@/utils/ruoyi'
 import Pagination from '@/components/Pagination'
 import * as filters from './filters' // global filters
-
-import App from './App'
-import store from './store'
-import router from './router'
 
 
 // 全局方法挂载
@@ -61,12 +59,13 @@ Vue.prototype.msgInfo = function (msg) {
 // 全局组件挂载
 Vue.component('Pagination', Pagination)
 Vue.component('ElImageViewer', ElImageViewer)
+
 // 按钮级别权限配置
 // import button_permission from './directive/button_permission'
 // Vue.use(button_permission)
 
 Vue.use(Element, {
-  size: Cookies.get('size') || 'medium', // set element-ui default size
+  size: Cookies.get('size') || 'smail', // set element-ui default size
   // locale: enLang // 如果使用中文，无需设置，请删除
 })
 

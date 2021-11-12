@@ -176,11 +176,8 @@
 </template>
 
 
-<style>
-/**
- * prism.js Github theme based on GitHub's theme.
- * @author Sam Clarke
- */
+<style scoped>
+
 code[class*="language-"],
 pre[class*="language-"] {
   color: #333;

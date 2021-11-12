@@ -56,8 +56,6 @@ export default {
 </script>
 
 
-
-
 <style>
 @import "./assets/custom-theme/font.css";
 * {

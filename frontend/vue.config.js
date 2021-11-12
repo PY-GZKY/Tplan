@@ -20,7 +20,7 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: './',
+  publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development',
@@ -60,14 +60,32 @@ module.exports = {
 
     }
   },
-  configureWebpack: {
-    name: name,
-    resolve: {
-      alias: {
-        '@': resolve('src')
+
+  // configureWebpack: {
+  //   name: name,
+  //   resolve: {
+  //     alias: {
+  //       '@': resolve('src')
+  //     }
+  //   }
+  // },
+
+
+  configureWebpack: (config) => {
+    if (process.env.NODE_ENV === 'production') { // 为生产环境修改配置...
+      config.mode = 'production';
+      config["performance"] = {//打包文件大小配置
+        // 警告 webpack 的性能提示
+				hints: 'warning',
+				// 入口起点的最大体积
+				maxEntrypointSize: 50000000,
+				// 生成文件的最大体积
+				maxAssetSize: 30000000,
       }
     }
   },
+
+
   chainWebpack(config) {
     // it can improve the speed of the first screen, it is recommended to turn on preload
     // config.plugins.delete('preload')
