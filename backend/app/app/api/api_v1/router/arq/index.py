@@ -9,7 +9,7 @@ router = APIRouter()
 
 
 async def test(request: Request):
-    job = await request.app.state.arq_redis.enqueue_job('say_hello', name="wt", _queue_name="arq:queue2")
+    job = await request.app.state.arq_redis.enqueue_job('say_hello', name="wt", _queue_name="arq:queue")
     job_ = await job.info()
     return {"job_": job_}
 
@@ -56,7 +56,7 @@ async def get_all_task(request: Request):
 
 async def get_all_result(
         request: Request,
-        queue_name="arq:queue2",
+        queue_name="arq:queue",
         worker=None,
         task=None,
         status=None,
@@ -67,7 +67,7 @@ async def get_all_result(
     queued_jobs_ = await request.app.state.arq_redis.queued_jobs(queue_name=queue_name)
     queued_jobs__ = []
     for queued_job_ in queued_jobs_:
-        state = await Job(job_id=queued_job_.__dict__.get("job_id"), redis=request.app.state.redis,
+        state = await Job(job_id=queued_job_.__dict__.get("job_id"), redis=request.app.state.arq_redis,
                           _queue_name=queue_name).status()
         queued_job_.__dict__.update({"state": state})
         queued_jobs__.append(queued_job_.__dict__)
@@ -75,9 +75,8 @@ async def get_all_result(
     results = await request.app.state.arq_redis.all_job_results()
     results_ = []
     for result in results:
-        if result.__dict__.get("queue_name") == queue_name:
-            result.__dict__.update({"state": "complete"})
-            results_.append(result.__dict__)
+        result.__dict__.update({"state": "complete"})
+        results_.append(result.__dict__)
 
     all_result_ = results_ + queued_jobs__
     if worker:

@@ -44,9 +44,9 @@ class WorkerSettings:
     on_shutdown = shutdown
 
     cron_jobs = [
-        cron(coroutine=run_regularly, name="x100", minute=40, second=50, keep_result_forever=True)
+        cron(coroutine=run_regularly, name="定时任务", minute=40, second=50, keep_result_forever=True)
     ]
 
     allow_abort_jobs = True
 
-    # queue_name = "arq:queue1"
+    # queue_name = "arq:queue"

@@ -77,6 +77,7 @@
       <el-table-column min-width="80px" align="center" label="状态">
         <template slot-scope="{ row }">
           <el-tag v-if="row.is_action" type="success" size="mini">运行中</el-tag>
+          <el-tag v-else type="info" size="mini">离线</el-tag>
         </template>
       </el-table-column>
 

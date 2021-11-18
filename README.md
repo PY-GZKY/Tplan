@@ -16,7 +16,7 @@
 
 ## ✨ 线上体验
 
-### [Tplan](http://47.243.77.139)
+### [Tplan](http://demo.tplan.cc/)
 
 ```shell
 username:test123

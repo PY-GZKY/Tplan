@@ -193,17 +193,18 @@
 
       <el-table-column min-width="270px" align="center" label="结束时间">
         <template slot-scope="{ row }">
-          <el-button type="" size="mini" plain>{{
-            row.finish_time || "待定"
+          <el-button v-if="row.finish_time" type="" size="mini" plain>{{
+            row.finish_time
           }}</el-button>
+          <span v-else>待定</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="200px" align="center" label="运行时长">
+      <!-- <el-table-column min-width="200px" align="center" label="运行时长">
         <template slot-scope="{ row }">
           {{ row.expire_time || "待定" }}
         </template>
-      </el-table-column>
+      </el-table-column> -->
 
       <el-table-column min-width="140px" align="center" label="成功">
         <template slot-scope="{ row }">
@@ -219,7 +220,7 @@
             icon="el-icon-delete"
             circle
           ></el-button>
-          <el-button v-else type="text" size="mini" plain>待定</el-button>
+          <span v-else>待定</span>
         </template>
       </el-table-column>
     </el-table>
@@ -266,7 +267,7 @@ export default {
         status: null,
         job_id_: null,
         start_time: null,
-        end_time: null
+        end_time: null,
       },
     };
   },
