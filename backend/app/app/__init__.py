@@ -6,7 +6,6 @@ import os
 import sys
 import time
 
-from app.arq.connections import RedisSettings, create_pool
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
 from fastapi_profiler.profiler_middleware import PyInstrumentProfilerMiddleware
@@ -14,6 +13,7 @@ from fastapi_utils.tasks import repeat_every
 from motor.motor_asyncio import AsyncIOMotorClient
 from starlette.middleware.cors import CORSMiddleware
 
+from app.arq.connections import RedisSettings, create_pool
 from app.db.mongo_db import db
 from app.db.redis_db import RedisCore
 from app.logger import logger
@@ -36,7 +36,7 @@ def create_app():
         description=settings.DESCRIPTION,  # 项目简介
         # docs_url=f"{settings.API_V1_STR}/docs",  # 自定义 docs文档的访问路径
         # openapi_url=f"{settings.API_V1_STR}/openapi.json"
-        docs_url=None,
+        docs_url=None,  # 禁用文档
         openapi_url=None
     )
 
