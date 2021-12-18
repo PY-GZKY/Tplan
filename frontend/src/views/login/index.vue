@@ -1,7 +1,6 @@
 <template>
   <div
     class="login-container"
-    :style="'background-image:url(' + Background + ');'"
   >
     <el-form
       ref="loginForm"
@@ -99,7 +98,7 @@
 <script>
 import { validUsername } from "@/utils/validate";
 import SocialSign from "./components/SocialSignin";
-import Background from "@/assets/bg/background.jpg";
+// import Background from "@/assets/bg/background.jpg";
 
 export default {
   name: "Login",
@@ -120,7 +119,7 @@ export default {
       }
     };
     return {
-      Background: Background,
+      // Background: Background,
       loginForm: {
         username: "",
         password: "",

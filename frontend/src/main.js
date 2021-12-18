@@ -1,7 +1,3 @@
-import Vue from 'vue'
-import App from './App'
-import store from './store'
-import router from './router'
 
 import Cookies from 'js-cookie'
 
@@ -31,6 +27,12 @@ import { getDicts } from '@/api/system/dict/data'
 import { resetForm, selectDictLabel, download, handleTree } from '@/utils/ruoyi'
 import Pagination from '@/components/Pagination'
 import * as filters from './filters' // global filters
+
+
+import Vue from 'vue'
+import App from './App'
+import store from './store'
+import router from './router'
 
 
 // 全局方法挂载

@@ -36,6 +36,8 @@ def create_app():
         description=settings.DESCRIPTION,  # 项目简介
         # docs_url=f"{settings.API_V1_STR}/docs",  # 自定义 docs文档的访问路径
         # openapi_url=f"{settings.API_V1_STR}/openapi.json"
+        docs_url=None,
+        openapi_url=None
     )
 
     # 中间件

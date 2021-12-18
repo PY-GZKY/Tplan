@@ -1,1 +1,1 @@
-export var celery_ = 'http://47.243.77.139:5555';
+export var celery_ = 'http://api.tplan.cc:5555';
