@@ -23,7 +23,7 @@ username:test123
 password:test123
 ```
 
-> PS: 可能稍有延迟、如不可访问请自行科学上网
+> 目前已经从 `Github page` 转至 大陆 `DNS`解析、建议大陆网络访问
 
 ## 👊 关于`Tplan`
 
