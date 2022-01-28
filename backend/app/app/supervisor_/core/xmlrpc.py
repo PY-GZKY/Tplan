@@ -17,5 +17,5 @@ class XmlRpc:
 
         uri = urlunparse((scheme, server, path + "/RPC2", params, query, fragment))
 
-        print("RPC CONNECT URI : ", uri)
+        # print("RPC CONNECT URI : ", uri)
         return xmlrpc.client.ServerProxy(uri)
